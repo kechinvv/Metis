@@ -292,12 +292,13 @@ install_criu() {
 colorecho cyan "Installing required packages..."
 if [ -x "$(command -v apt-get)" ]; then
   runcmd sudo apt update
+  runcmd install_pkg build-essential m4 autoconf bison flex cmake make
 else
   runcmd sudo dnf update
+  runcmd install_pkg gcc-c++ kernel-devel m4 autoconf bison flex cmake make automake
 fi
 # Basic tools and compilers
 runcmd install_pkg gcc g++ git vim
-runcmd install_pkg build-essential m4 autoconf bison flex cmake make
 # Dependencies for MCFS
 runcmd install_pkg mtd-tools libssl-dev
 runcmd install_pkg libfuse-dev
