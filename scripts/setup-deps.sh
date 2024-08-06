@@ -292,15 +292,13 @@ install_criu() {
 colorecho cyan "Installing required packages..."
 if [ -x "$(command -v apt-get)" ]; then
   runcmd sudo apt update
-  runcmd install_pkg build-essential m4 autoconf bison flex cmake make
 else
   runcmd sudo dnf update
-  #todo: replace build-essential, cmake
-  runcmd install_pkg m4 autoconf bison flex make
-
 fi
+
+runcmd install_pkg build-essential m4 autoconf bison flex cmake make #build essential and cmake not in dnf!
 # Basic tools and compilers
-runcmd install_pkg gcc g++ git vim
+runcmd install_pkg gcc g++ git vim  # dnf yes
 # Dependencies for MCFS
 runcmd install_pkg mtd-tools libssl-dev
 runcmd install_pkg libfuse-dev
@@ -311,7 +309,7 @@ runcmd install_pkg libgoogle-perftools-dev
 # runcmd install_pkg libnfsidmap2
 runcmd install_pkg libnfsidmap-dev
 # RPC library required by NFS-Ganesha
-runcmd install_pkg libtirpc-dev
+runcmd install_pkg libtirpc-dev  #dnf yes
 runcmd install_pkg libkrb5-3
 runcmd install_pkg libkrb5-dev
 runcmd install_pkg libk5crypto3
@@ -320,9 +318,9 @@ runcmd install_pkg libgssglue1
 runcmd install_pkg libdbus-1-3
 runcmd install_pkg libattr1-dev
 runcmd install_pkg libacl1-dev
-runcmd install_pkg dbus
+runcmd install_pkg dbus         #dnf yes
 runcmd install_pkg libdbus-1-dev
-runcmd install_pkg libcap-dev
+runcmd install_pkg libcap-dev   #dnf yes
 runcmd install_pkg libjemalloc-dev
 runcmd install_pkg uuid-dev
 runcmd install_pkg libblkid-dev
@@ -330,13 +328,13 @@ runcmd install_pkg xfslibs-dev
 runcmd install_pkg libwbclient-dev
 #runcmd install_pkg pyqt4-dev-tools
 runcmd install_pkg rpm2cpio
-runcmd install_pkg libaio-dev
+runcmd install_pkg libaio-dev    #dnf yes
 runcmd install_pkg libibverbs-dev
 runcmd install_pkg librdmacm-dev
-runcmd install_pkg rpcbind
+runcmd install_pkg rpcbind       #dnf yes
 runcmd install_pkg nfs-common
 runcmd install_pkg libboost-all-dev
-runcmd install_pkg liburcu-dev
+runcmd install_pkg liburcu-dev   #dnf yes
 runcmd install_pkg libxxhash-dev
 runcmd install_pkg nilfs-tools
 runcmd install_pkg rename
