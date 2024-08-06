@@ -63,7 +63,7 @@ install_pkg() {
         fi
         # Report error if the package does not exist
 
-        if type apt; then
+        if [ -x "$(command -v apt-get)" ]; then
           if ! apt-cache show "$pkg" 2>/dev/null >/dev/null; then
               colorecho red "Package $pkg does not exist in the software source!";
               return 1;
@@ -290,7 +290,7 @@ install_criu() {
 }
 
 colorecho cyan "Installing required packages..."
-if type apt; then
+if [ -x "$(command -v apt-get)" ]; then
   runcmd sudo apt update
 else
   runcmd sudo dnf update
