@@ -295,7 +295,9 @@ if [ -x "$(command -v apt-get)" ]; then
   runcmd install_pkg build-essential m4 autoconf bison flex cmake make
 else
   runcmd sudo dnf update
-  runcmd install_pkg @development-tools m4 autoconf bison flex cmake make
+  #todo: replace build-essential
+  runcmd install_pkg m4 autoconf bison flex cmake make
+
 fi
 # Basic tools and compilers
 runcmd install_pkg gcc g++ git vim
