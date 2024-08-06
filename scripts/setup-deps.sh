@@ -184,7 +184,7 @@ echo "";
 
 install_nfs_ganesha() {
     pushd $BASEDIR;
-    runcmd prepare_repo nfs-ganesha git@github.com:nfs-ganesha/nfs-ganesha.git;
+    runcmd prepare_repo nfs-ganesha https://github.com/nfs-ganesha/nfs-ganesha;
 
     pwd;
     cd nfs-ganesha/src;
@@ -201,7 +201,7 @@ install_nfs_ganesha() {
 
 install_xxHash() {
     pushd $BASEDIR;
-    runcmd prepare_repo xxHash git@github.com:Cyan4973/xxHash.git;
+    runcmd prepare_repo xxHash https://github.com/Cyan4973/xxHash;
 
     cd xxHash
     runcmd git checkout v0.8.0
@@ -215,7 +215,7 @@ install_xxHash() {
 
 install_zlib() {
     pushd $BASEDIR;
-    runcmd prepare_repo zlib git@github.com:madler/zlib.git;
+    runcmd prepare_repo zlib https://github.com/madler/zlib;
 
     cd zlib
     runcmd git checkout master
@@ -230,7 +230,7 @@ install_zlib() {
 
 install_reffs() {
     pushd $BASEDIR;
-    runcmd prepare_repo RefFS git@github.com:sbu-fsl/RefFS.git;
+    runcmd prepare_repo RefFS https://github.com/sbu-fsl/RefFS;
 
     cd RefFS
     if should_override RefFS; then
@@ -247,7 +247,7 @@ install_reffs() {
 
 install_spin() {
     pushd $BASEDIR;
-    runcmd prepare_repo fsl-spin git@github.com:sbu-fsl/fsl-spin.git;
+    runcmd prepare_repo fsl-spin https://github.com/sbu-fsl/fsl-spin;
 
     cd fsl-spin
     runcmd git checkout c-track-hooks;
@@ -262,7 +262,7 @@ install_spin() {
 # This should be run without sudo
 install_swarm() {
     pushd $BASEDIR;
-    runcmd prepare_repo swarm-mcfs git@github.com:sbu-fsl/swarm-mcfs.git;
+    runcmd prepare_repo swarm-mcfs https://github.com/sbu-fsl/swarm-mcfs;
 
     cd swarm-mcfs
     runcmd git fetch
@@ -277,7 +277,7 @@ install_swarm() {
 
 install_criu() {
     pushd $BASEDIR;
-    runcmd prepare_repo criu git@github.com:checkpoint-restore/criu.git;
+    runcmd prepare_repo criu https://github.com/checkpoint-restore/criu;
 
     cd criu
     runcmd git fetch
