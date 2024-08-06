@@ -62,11 +62,20 @@ install_pkg() {
             fi
         fi
         # Report error if the package does not exist
-        if ! apt-cache show "$pkg" 2>/dev/null >/dev/null; then
-            colorecho red "Package $pkg does not exist in the software source!";
-            return 1;
+
+        if type apt; then
+          if ! apt-cache show "$pkg" 2>/dev/null >/dev/null; then
+              colorecho red "Package $pkg does not exist in the software source!";
+              return 1;
+          fi
+          sudo apt-get install -y $pkg;
+        else
+          if ! dnf search "$pkg" 2>/dev/null >/dev/null; then
+                        colorecho red "Package $pkg does not exist in the software source!";
+                        return 1;
+          fi
+          sudo dnf install -y $pkg;
         fi
-        sudo apt-get install -y $pkg;
         res=$?;
         if [ $res -ne 0 ]; then
             colorecho red "Failed to install $pkg. res is $res";
@@ -281,7 +290,11 @@ install_criu() {
 }
 
 colorecho cyan "Installing required packages..."
-runcmd sudo apt update
+if type apt; then
+  runcmd sudo apt update
+else
+  runcmd sudo dnf update
+fi
 # Basic tools and compilers
 runcmd install_pkg gcc g++ git vim
 runcmd install_pkg build-essential m4 autoconf bison flex cmake make
